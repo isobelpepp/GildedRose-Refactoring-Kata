@@ -22,12 +22,12 @@ describe GildedRose do
     end
     it 'decreases the quality by 2 at the end of the day if sell in is less than 0' do
       x = 0
-      while x < 3
+      while x < 4
         gilded_rose.update_quality
         x += 1
       end
-      expect(items[0].sell_in).to eq(-1)
-      expect(items[0].quality).to eq 5
+      expect(items[0].sell_in).to eq(-2)
+      expect(items[0].quality).to eq 4
     end
     it 'never decreases quality to less than 0' do
       x = 0
@@ -82,6 +82,7 @@ describe GildedRose do
     end
     it 'decreases quality to 0 after concert is finished (sell_in is <= 0)' do
       passes = [Item.new('Backstage passes to a TAFKAL80ETC concert', 0, 50)]
+      GildedRose.new(passes).update_quality
       GildedRose.new(passes).update_quality
       expect(passes[0].quality).to eq 0
     end
