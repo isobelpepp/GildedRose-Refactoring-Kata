@@ -1,4 +1,5 @@
-require 'gilded_rose'
+require 'gilded_rose_item'
+require 'gilded_rose_shop'
 
 describe GildedRose do
 
