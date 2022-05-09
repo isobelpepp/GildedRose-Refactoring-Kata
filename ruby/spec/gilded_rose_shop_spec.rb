@@ -92,4 +92,22 @@ describe GildedRose do
       expect(passes[0].quality).to eq 50
     end
   end
+
+  describe 'Conjured' do
+    it 'decreases by 2 when sell_in is 0 or above' do
+      conjured_items = [Item.new('Conjured', 4, 30)]
+      GildedRose.new(conjured_items).update_quality
+      expect(conjured_items[0].quality).to eq 28
+    end
+    it 'decreases by 4 when sell_in is below 0' do
+      conjured_items = [Item.new('Conjured', -1, 30)]
+      GildedRose.new(conjured_items).update_quality
+      expect(conjured_items[0].quality).to eq 26
+    end
+    it 'does not descreade quality below 0' do
+      conjured_items = [Item.new('Conjured', -1, 3)]
+      GildedRose.new(conjured_items).update_quality
+      expect(conjured_items[0].quality).to eq 0
+    end
+  end
 end
